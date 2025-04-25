@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS build
+FROM ubuntu-24.04 AS build
 ARG MODEL
 #shell,rtmp,rtsp,rtsps,http,https,rtp
 EXPOSE 1935/tcp
@@ -55,7 +55,7 @@ WORKDIR /opt/media/ZLMediaKit/build
 RUN cmake -DCMAKE_BUILD_TYPE=${MODEL} -DENABLE_WEBRTC=true -DENABLE_FFMPEG=true -DENABLE_TESTS=false -DENABLE_API=false .. && \
     make -j $(nproc)
 
-FROM ubuntu:20.04
+FROM ubuntu-24.04
 ARG MODEL
 
 # ADD sources.list /etc/apt/sources.list
